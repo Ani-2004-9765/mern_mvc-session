@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#74ebd5,#9face6);
+            min-height:100vh;
+            padding:40px 20px;
+        }
+
+        .container{
+            max-width:1000px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 10px 25px rgba(0,0,0,.15);
+            overflow-x:auto;
+        }
+
+        .header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+        }
+
+        h2{
+            color:#333;
+        }
+
+        .add-btn{
+            text-decoration:none;
+            background:#2575fc;
+            color:white;
+            padding:5px 5px;
+            border-radius:5px;
+            transition:.3s;
+        }
+
+        .add-btn:hover{
+            background:#1b5fd6;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th{
+            background:#2575fc;
+            color:white;
+            padding:14px;
+        }
+
+        td{
+            padding:14px;
+            text-align:center;
+            border-bottom:1px solid #ddd;
+        }
+
+        tr:hover{
+            background:#f8f8f8;
+        }
+
+        th:last-child,
+        td:last-child{
+            width:180px;
+        }
+
+        .action{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:8px;
+            white-space:nowrap;
+        }
+
+        .edit-btn{
+            text-decoration:none;
+            background:#28a745;
+            color:white;
+            padding:8px 14px;
+            border-radius:6px;
+            font-size:14px;
+        }
+
+        .edit-btn:hover{
+            background:#218838;
+        }
+
+        .delete-btn{
+            background:#dc3545;
+            color:white;
+            border:none;
+            padding:8px 14px;
+            border-radius:6px;
+            cursor:pointer;
+            font-size:14px;
+        }
+
+        .delete-btn:hover{
+            background:#bb2d3b;
+        }
+
+        form{
+            display:inline;
+        }
+
+        @media(max-width:768px){
+
+            .header{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            .action{
+                flex-direction:column;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h2>Room Details &nbsp;&nbsp;<a href="/addRooms" class="add-btn"> + Add Room</a></h2>
+        
+    </div>
+
+    <table>
+
+        <tr>
+            <th>Room No</th>
+            <th>Room Type</th>
+            <th>Price</th>
+            <th>Capacity</th>
+            <th>Actions</th>
+        </tr>
+
+        <% result.forEach(d => { %>
+
+        <tr>
+            <td><%= d.RoomNo %></td>
+            <td><%= d.RoomType %></td>
+            <td>₹<%= d.Price %></td>
+            <td><%= d.capacity %></td>
+
+            <td>
+                <div class="action">
+
+                    <a href="/Edit/<%= d._id %>" class="edit-btn">
+                        Edit
+                    </a>
+
+                    <form
+                        action="/deleteRooms/<%= d._id %>?_method=delete"
+                        method="post"
+                        onsubmit="return confirm('Are you sure?')">
+
+                        <button type="submit" class="delete-btn">
+                            Delete
+                        </button>
+
+                    </form>
+
+                </div>
+            </td>
+
+        </tr>
+
+        <% }) %>
+
+    </table>
+
+</div>
+
+</body>
+</html>

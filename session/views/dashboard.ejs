@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#6a11cb,#2575fc);
+        }
+
+        .dashboard{
+            background:white;
+            width:350px;
+            padding:25px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 10px 25px rgba(0,0,0,.2);
+        }
+
+        h1{
+            color:#333;
+            margin-bottom:10px;
+        }
+
+        p{
+            color:#666;
+            margin-bottom:20px;
+        }
+
+        .buttons{
+            display:flex;
+            justify-content:center;
+            gap:15px;
+        }
+
+        .btn{
+            text-decoration:none;
+            color:white;
+            padding:10px 20px;
+            border-radius:8px;
+            font-size:15px;
+            transition:0.3s;
+        }
+
+        .show-btn{
+            background:#2575fc;
+        }
+
+        .show-btn:hover{
+            background:#1b5fd6;
+        }
+
+        .logout-btn{
+            background:#dc3545;
+        }
+
+        .logout-btn:hover{
+            background:#bb2d3b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+
+        <h1>Welcome, <%= data %> 👋</h1>
+
+        <p>You have successfully logged in to your account.</p>
+
+        <div class="buttons">
+
+            <!-- Change 4000 to the port of your Room project -->
+            <a href="http://localhost:5000/showRooms" class="btn show-btn">
+                Show Rooms
+            </a>
+
+            <a href="/logout" class="btn logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
